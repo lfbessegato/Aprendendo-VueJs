@@ -9,9 +9,6 @@
     "start": "npm run dev",
     "build": "node build/build.js"
   },
-  "dependencies": {
-    "vue": "^2.5.2"
-  },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
@@ -25,6 +22,8 @@
     "chalk": "^2.0.1",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
+    "eslint": "^7.16.0",
+    "eslint-plugin-vue": "^7.0.0-beta.4",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",
@@ -59,5 +58,13 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "dependencies": {
+    "build": "^0.1.4",
+    "dev-server": "^0.1.0",
+    "vue": "^2.6.12",
+    "vue-resource": "^1.5.1",
+    "vue-router": "^3.4.9",
+    "vuex": "^3.6.0"
+  }
 }

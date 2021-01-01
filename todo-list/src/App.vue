@@ -4,8 +4,8 @@
       <h1>Tarefas</h1>
     </header>
     <input-task @newTask="addTask" ></input-task>
-	<task-list v-bind:todo-list="tasks" ></task-list> 
-	
+	<task-list v-bind:todo-list="tasks" ></task-list>
+	<router-link class="cep" to="/cep">Verificar CEP</router-link>
   </section>
 </template>
 
@@ -27,6 +27,7 @@ export default {
   components: {
 	InputTask, 
 	TaskList
+	
   },
   data () {
       return {

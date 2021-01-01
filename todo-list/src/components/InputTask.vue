@@ -1,8 +1,10 @@
 <template>
   <div>
-      <input class="new-todo" 
-      v-on:keyup.enter="addTask" 
-      placeholder="O que precisa ser feito?">
+	  <transition appear name="fade">
+      	<input class="new-todo" 
+      	v-on:keyup.enter="addTask" 
+      	placeholder="O que precisa ser feito?">
+	  </transition>
   </div>
 </template>
 
@@ -15,15 +17,25 @@ export default {
         }
     },
     methods: {
-        addTask ($event) {
-            let value = $event.target.value
-            let task = new Task()
-            task.completed = false
-            task.title = value
-			this.$emit('newTask', task)
-			$event.target.value = ''
-        }
-    }
+      addTask ($event) {
+        let value = $event.target.value
+        let task = this.createTask(value)
+        this.broadcast(task)
+        this.clearField($event)
+      },
+      createTask (value) {
+    	  let task = new Task()
+      	  task.completed = false
+      	  task.title = value
+      	  return task
+	   },
+	   broadcast (task) {
+		   this.$emit('newTask', task)
+	   },
+       clearField () {
+      	this.$el.querySelector('input').value = ''
+	   }
+	}
 }
 </script>
 

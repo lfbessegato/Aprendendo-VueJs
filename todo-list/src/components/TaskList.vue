@@ -7,7 +7,7 @@
           <label  v-if="todo.completed" class="todo-completed">{{ todo.title }}</label>
 		  <label v-else >{{ todo.title }}</label>
        </div>
-     </li>
+      </li>
   </ul>
 </template>
 
@@ -39,4 +39,5 @@ export default {
 .todo-completed {
 	text-decoration: line-through;
 }
+
 </style>
