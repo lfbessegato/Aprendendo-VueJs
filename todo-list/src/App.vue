@@ -15,11 +15,6 @@
 import InputTask from './components/InputTask'
 import TaskList from './components/TaskList'
 import FooterTodo from './components/FooterTodo'
-import { Task } from './models/Task'
-
-let tasks = []
-let task = new Task()
-task.completed = false
 
 export default {
   name: 'app',
