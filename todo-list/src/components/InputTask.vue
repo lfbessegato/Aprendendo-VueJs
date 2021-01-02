@@ -1,10 +1,10 @@
 <template>
   <div>
-	  <transition appear name="fade">
-      	<input class="new-todo" 
-      	@keyup.enter="addTask" 
-      	placeholder="O que precisa ser feito?">
-	  </transition>
+    <transition appear name="fade">
+      <input v-focus="true" class="new-todo"
+          @keyup.enter="addTask"
+          placeholder="O que precisa ser feito?">
+    </transition>
   </div>
 </template>
 
@@ -13,32 +13,28 @@ import { Task } from '../models/Task'
 import Focus from '../directives/focus'
 
 export default {
-    directives: {
+  directives: {
     'focus': Focus
+  },
+  methods: {
+    addTask ($event) {
+      let value = $event.target.value
+      let task = this.createTask(value)
+      this.$store.commit('addTask', { task })
+      this.clearField($event)
     },
-    methods: {
-      addTask ($event) {
-        let value = $event.target.value
-        let task = this.createTask(value)
-        this.broadcast(task)
-        this.clearField($event)
-      },
-      createTask (value) {
-    	  let task = new Task()
-      	  task.completed = false
-      	  task.title = value
-      	  return task
-	   },
-	   broadcast (task) {
-		   this.$emit('newTask', task)
-	   },
-       clearField () {
-      	this.$el.querySelector('input').value = ''
-	   }
-	}
+    createTask (value) {
+      let task = new Task()
+      task.completed = false
+      task.title = value
+      return task
+    },
+    clearField () {
+      this.$el.querySelector('input').value = ''
+    }
+  }
 }
 </script>
-
 <style>
 .todoapp input::-webkit-input-placeholder {
 	font-style: italic;

@@ -3,48 +3,34 @@
     <header class="header">
       <h1>Tarefas</h1>
     </header>
-    <input-task @newTask="addTask" ></input-task>
-	<task-list v-bind:todo-list="tasks" ></task-list>
-	<router-link class="cep" to="/cep">Verificar CEP</router-link>
+    <input-task></input-task>
+    <task-list ></task-list>
+    <router-link class="cep" to="/cep">Verificar CEP</router-link>
+    <footer-todo>
+    </footer-todo>
   </section>
 </template>
 
 <script>
 import InputTask from './components/InputTask'
 import TaskList from './components/TaskList'
+import FooterTodo from './components/FooterTodo'
 import { Task } from './models/Task'
 
 let tasks = []
 let task = new Task()
 task.completed = false
-task.title = 'Tarefa'
-tasks.push(task)
-tasks.push(task)
-tasks.push(task)
 
 export default {
-  name: 'App',
+  name: 'app',
   components: {
-	InputTask, 
-	TaskList
-	
+    InputTask,
+    TaskList,
+    FooterTodo
   },
-  data () {
-      return {
-	   tasks: tasks
-	  }
-	},
-	mounted (){
-		this.$events.on('newTask', eventData => this.addTask(eventData))
-	},
-	methods: {
-		addTask (task) {
-			this.tasks.push(task)
-		},
-		broadcast (task) {
-			this.$events.emit('newTask', task)
-		}
-	}
+  mounted () {
+    this.$events.on('newTask', eventData => this.addTask(eventData))
+  }
 }
 </script>
 
